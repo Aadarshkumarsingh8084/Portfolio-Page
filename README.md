@@ -11,7 +11,7 @@ Welcome to my portfolio! This page provides a glimpse into my skills, projects, 
 
 A brief introduction about who you are, your background, and your passions. For example:
 
-> I am a passionate [Your Field] with [Number] years of experience in [Specific Areas of Expertise]. I am driven by [Your Motivations] and dedicated to creating [Your Goals].
+> I am a passionate web-devlopment with 1 years of experience in java. I am driven by consistensy and dedicated to creating project.
 
 You can also include:
 
