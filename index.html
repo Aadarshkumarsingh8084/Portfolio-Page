@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cursor"></div>
+    
+    <header>
+        <nav>
+            <div class="logo">PORTFOLIO</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="animate-text">Hi, I'm <span class="highlight">Aadarsh Singh</span></h1>
+                <h2 class="animate-text">Frontend Developer</h2>
+                <p class="animate-text">I build beautiful, responsive websites with modern technologies</p>
+                <a href="#projects" class="btn animate-text">View My Work</a>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <img src="img.jpg" alt="Profile Image" class="profile-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a passionate frontend developer with 5 years of experience creating engaging web experiences. My journey in web development started when I was in college and I've been in love with coding ever since.</p>
+                    <p>When I'm not coding, you can find me hiking, reading sci-fi novels, or experimenting with new recipes in the kitchen.</p>
+                    <div class="social-icons">
+                        <a href="https://github.com/Aadarshkumarsingh8084?tab=repositories"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/aadarsh-kumar-singh-a70126253/"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="50">0</div>
+                        <div class="stat-text">Projects Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="25">0</div>
+                        <div class="stat-text">Happy Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="5">0</div>
+                        <div class="stat-text">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                    <div class="skill-name">HTML5</div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                    <div class="skill-name">CSS3</div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-js"></i></div>
+                    <div class="skill-name">JavaScript</div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-react"></i></div>
+                    <div class="skill-name">React</div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                    <div class="skill-name">Node.js</div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="75"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                    <div class="skill-name">Git</div>
+                    <div class="skill-bar">
+                        <div class="skill-level" data-level="85"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="project-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="react">React</button>
+            <button class="filter-btn" data-filter="javascript">JavaScript</button>
+            <button class="filter-btn" data-filter="api">API</button>
+        </div>
+
+        <section id="projects" class="projects">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://static.vecteezy.com/system/resources/previews/019/487/290/non_2x/e-commerce-landing-page-design-free-vector.jpg" alt="Project 1">
+                    </div>
+                    <div class="project-info">
+                        <h3>E-commerce Website</h3>
+                        <p>A fully responsive e-commerce platform built with React and Node.js.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="" alt="Project 2">
+                    </div>
+                    <div class="project-info">
+                        <h3>Task Management App</h3>
+                        <p>A productivity app for managing tasks with drag-and-drop functionality.</p>
+                        <div class="project-tags">
+                            <span>JavaScript</span>
+                            <span>Firebase</span>
+                            <span>CSS3</span>
+                        </div>
+                        <a href="https://img.freepik.com/premium-vector/schedule-app-task-manager-ui-template-with-project-timeline-time-optimization-task-management-web-app-dashboard-interface-vector-design_102902-6106.jpg?w=2000" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="#" alt="Project 3">
+                    </div>
+                    <div class="project-info">
+                        <h3>Weather Dashboard</h3>
+                        <p>Real-time weather information with 5-day forecast using Weather API.</p>
+                        <div class="project-tags">
+                            <span>API</span>
+                            <span>JavaScript</span>
+                            <span>HTML5</span>
+                        </div>
+                        <a href="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/27ca30187891801.659311b118ceb.png" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2 class="section-title">Testimonials</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-slider">
+                    <div class="testimonial-track">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">Working with Jane was an absolute pleasure. She delivered our e-commerce platform ahead of schedule and it has significantly boosted our online sales.</p>
+                                <div class="testimonial-author">
+                                    <img src="#" alt="Alok">
+                                    <div class="author-info">
+                                        <h4>Alok</h4>
+                                        <p>CEO, TechCorp</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">Jane's attention to detail and clean code made our collaboration seamless. The task management app she built has improved our team's productivity by 40%.</p>
+                                <div class="testimonial-author">
+                                    <img src="#" alt="Aadarsh">
+                                    <div class="author-info">
+                                        <h4>Aadarsh</h4>
+                                        <p>Product Manager, InnovateCo</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">I've worked with many developers, but Jane stands out for her creativity and problem-solving skills. She transformed our vague ideas into a beautiful, functional website.</p>
+                                <div class="testimonial-author">
+                                    <img src="#" alt="Subham">
+                                    <div class="author-info">
+                                        <h4>Subham</h4>
+                                        <p>Founder, StartupX</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-nav">
+                        <button class="active"></button>
+                        <button></button>
+                        <button></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-envelope"></i> aadarsh@123.gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 6207430060</p>
+                    <p><i class="fas fa-map-marker-alt"></i>Jalandhar</p>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo"></div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 @ . All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
