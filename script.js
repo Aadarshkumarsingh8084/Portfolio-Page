@@ -1,149 +1,205 @@
-// Dark Mode Toggle
-const themeToggle = document.createElement('div');
-themeToggle.className = 'theme-toggle';
-themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-document.body.appendChild(themeToggle);
-
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const icon = themeToggle.querySelector('i');
-    if (document.body.classList.contains('dark-mode')) {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-        localStorage.setItem('theme', 'light');
-    }
-});
-
-// Check for saved theme preference
-if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-}
-
-// Testimonial Slider
-const testimonialSlider = () => {
-    const slider = document.querySelector('.testimonial-track');
-    const cards = document.querySelectorAll('.testimonial-card');
-    const navButtons = document.querySelectorAll('.testimonial-nav button');
-    
-    if (!slider) return;
-    
-    let currentIndex = 0;
-    const cardWidth = cards[0].clientWidth;
-    
-    const updateSlider = () => {
-        slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-        
-        // Update nav buttons
-        navButtons.forEach((btn, index) => {
-            btn.classList.toggle('active', index === currentIndex);
-        });
-    };
-    
-    // Auto slide
-    let autoSlide = setInterval(() => {
-        currentIndex = (currentIndex + 1) % cards.length;
-        updateSlider();
-    }, 5000);
-    
-    // Nav buttons
-    navButtons.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            currentIndex = index;
-            updateSlider();
-            clearInterval(autoSlide);
-            autoSlide = setInterval(() => {
-                currentIndex = (currentIndex + 1) % cards.length;
-                updateSlider();
-            }, 5000);
+document.addEventListener('DOMContentLoaded', function() {
+    // Loader
+    const loader = document.querySelector('.loader');
+    window.addEventListener('load', () => {
+        loader.classList.add('loader-hidden');
+        loader.addEventListener('transitionend', () => {
+            document.body.removeChild(loader);
         });
     });
-};
 
-// Project Filter
-const projectFilter = () => {
+    // Cursor
+    // const cursor = document.querySelector('.cursor');
+    // document.addEventListener('mousemove', (e) => {
+        // cursor.style.left = e.clientX + 'px';
+        // cursor.style.top = e.clientY + 'px';
+    // });
+
+    // Navigation
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links li');
+
+    burger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        burger.classList.toggle('active');
+    });
+
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            burger.classList.remove('active');
+        });
+    });
+
+    // Scroll behavior for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            header.style.padding = '1rem 0';
+        } else {
+            header.style.backgroundColor = 'transparent';
+            header.style.boxShadow = 'none';
+            header.style.padding = '2rem 0';
+        }
+    });
+
+    // Back to top button
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backToTop.classList.add('active');
+        } else {
+            backToTop.classList.remove('active');
+        }
+    });
+
+    // Animate on scroll
+    const animateElements = document.querySelectorAll('.animate-text');
+    const animateOnScroll = () => {
+        animateElements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementPosition < windowHeight - 100) {
+                element.classList.add('visible');
+            }
+        });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Run once on load
+
+    // Skills animation
+    const skillBars = document.querySelectorAll('.skill-level');
+    skillBars.forEach(bar => {
+        const level = bar.getAttribute('data-level');
+        bar.style.width = level + '%';
+    });
+
+    // Stats counter
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(stat => {
+        const target = +stat.getAttribute('data-count');
+        const increment = target / 100;
+        let current = 0;
+
+        const updateNumber = () => {
+            if (current < target) {
+                current += increment;
+                stat.textContent = Math.floor(current);
+                setTimeout(updateNumber, 20);
+            } else {
+                stat.textContent = target;
+            }
+        };
+
+        // Start counting when element is in view
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                updateNumber();
+                observer.unobserve(stat);
+            }
+        });
+
+        observer.observe(stat);
+    });
+
+    // Project filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-    
-    if (!filterButtons.length) return;
-    
+
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Update active button
+            // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
             button.classList.add('active');
-            
-            const filterValue = button.getAttribute('data-filter');
-            
-            // Filter projects
+
+            const filter = button.getAttribute('data-filter');
+
             projectCards.forEach(card => {
-                if (filterValue === 'all') {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
                     card.style.display = 'block';
                 } else {
-                    const tags = card.querySelector('.project-tags');
-                    if (tags.textContent.toLowerCase().includes(filterValue)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                }
-                
-                // Re-animate when filtering
-                if (card.style.display === 'block') {
-                    card.classList.remove('animate');
-                    setTimeout(() => card.classList.add('animate'), 50);
+                    card.style.display = 'none';
                 }
             });
         });
     });
-};
 
-// Loading Animation
-const loadingAnimation = () => {
-    const loader = document.createElement('div');
-    loader.className = 'loader';
-    loader.innerHTML = '<div class="loader-spinner"></div>';
-    document.body.appendChild(loader);
-    
-    setTimeout(() => {
-        loader.classList.add('fade-out');
-        setTimeout(() => loader.remove(), 500);
-    }, 1500);
-};
+    // Testimonial slider
+    const track = document.querySelector('.testimonial-track');
+    const prevBtn = document.querySelector('.slider-prev');
+    const nextBtn = document.querySelector('.slider-next');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    const slideCount = document.querySelectorAll('.testimonial-card').length;
 
-// Back to Top Button
-const backToTop = () => {
-    const button = document.createElement('div');
-    button.className = 'back-to-top';
-    button.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    document.body.appendChild(button);
-    
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            button.classList.add('active');
-        } else {
-            button.classList.remove('active');
-        }
+    const goToSlide = (slideIndex) => {
+        track.style.transform = `translateX(-${slideIndex * 100}%)`;
+        currentSlide = slideIndex;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    };
+
+    prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+        goToSlide(currentSlide);
     });
-    
-    button.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+
+    nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slideCount;
+        goToSlide(currentSlide);
+    });
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            goToSlide(index);
         });
     });
-};
 
-// Initialize all features
-const init = () => {
-    testimonialSlider();
-    projectFilter();
-    loadingAnimation();
-    backToTop();
-};
+    // Contact form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formMessage = document.querySelector('.form-message');
+            formMessage.textContent = 'Message sent successfully!';
+            formMessage.style.color = 'green';
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                formMessage.textContent = '';
+            }, 3000);
+        });
+    }
 
-init();
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+});
